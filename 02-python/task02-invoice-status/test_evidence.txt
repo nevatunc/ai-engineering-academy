@@ -1,0 +1,74 @@
+TEST EVIDENCE - Invoice Status Assistant v0.1
+Run with: python3 invoice_status.py
+Python version: Python 3.12.3
+Synthetic data only.
+Note: values were piped into the program, so the input prompts are not shown in the outputs below.
+
+=== T1 ===
+Input: ID=INV-101, Total=12000, Paid=12000, Days overdue=0
+Expected status: PAID
+Actual output:
+    Invoice: INV-101
+    Total: 12,000 MKD
+    Paid: 12,000 MKD
+    Days overdue: 0
+    Status: PAID
+    Remaining: 0 MKD
+
+=== T2 ===
+Input: ID=INV-101, Total=12000, Paid=4000, Days overdue=8
+Expected status: OVERDUE
+Actual output:
+    Invoice: INV-101
+    Total: 12,000 MKD
+    Paid: 4,000 MKD
+    Days overdue: 8
+    Status: OVERDUE
+    Remaining: 8,000 MKD
+
+=== T3 ===
+Input: ID=INV-101, Total=12000, Paid=4000, Days overdue=0
+Expected status: PARTIALLY_PAID
+Actual output:
+    Invoice: INV-101
+    Total: 12,000 MKD
+    Paid: 4,000 MKD
+    Days overdue: 0
+    Status: PARTIALLY_PAID
+    Remaining: 8,000 MKD
+
+=== T4 ===
+Input: ID=INV-101, Total=12000, Paid=0, Days overdue=0
+Expected status: UNPAID
+Actual output:
+    Invoice: INV-101
+    Total: 12,000 MKD
+    Paid: 0 MKD
+    Days overdue: 0
+    Status: UNPAID
+    Remaining: 12,000 MKD
+
+=== T5 ===
+Input: ID=INV-101, Total=12000, Paid=14000, Days overdue=3
+Expected status: OVERPAID
+Actual output:
+    Invoice: INV-101
+    Total: 12,000 MKD
+    Paid: 14,000 MKD
+    Days overdue: 3
+    Status: OVERPAID
+    Remaining: 0 MKD
+
+=== T6 ===
+Input: ID=INV-106, Total=0, Paid=0, Days overdue=0
+Expected status: INVALID
+Actual output:
+    Status: INVALID
+    Reason: total amount must be a positive integer.
+
+=== T7 ===
+Input: ID=INV-107, Total=12000, Paid=-100, Days overdue=0
+Expected status: INVALID
+Actual output:
+    Status: INVALID
+    Reason: paid amount cannot be negative.
